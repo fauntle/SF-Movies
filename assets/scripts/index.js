@@ -1,5 +1,4 @@
 var $ = require('jquery');
-require('mapbox.js'); // attaches "automatically" to window.L
 
 var LocationsCollection = require('./locationsCollection.js');
 var MapView = require('./mapView.js');
