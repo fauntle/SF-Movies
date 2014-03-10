@@ -16,11 +16,6 @@ module.exports = Backbone.View.extend({
 	},
 	onSubmit: function( e ){
 		e.preventDefault();
-		this.collection.query = this.$query.val();
-		this.collection.fetch({
-			dataType: 'jsonp',
-			jsonp: '$jsonp',
-			reset: true
-		});
+		this.collection.fetchQuery( this.$query.val() );
 	}
 });
