@@ -55,6 +55,7 @@ module.exports = Backbone.View.extend({
 				var marker = new google.maps.Marker({
 					position: new google.maps.LatLng( geocoding_results[0], geocoding_results[1] ),
 					title: location.get('title'),
+					animation: google.maps.Animation.DROP,
 					map: map
 				});
 			});
