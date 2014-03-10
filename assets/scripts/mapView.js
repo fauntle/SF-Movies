@@ -15,8 +15,10 @@ module.exports = Backbone.View.extend({
 		this.listenTo( this.collection, 'reset', this.drawMarkers );
 	},
 	render: function(){
-		this.map = L.mapbox.map( this.el, MAP_ID );
-		this.map.setView( MAP_DEFAULT_CENTER, MAP_DEFAULT_ZOOM ); // temporary. This should eventually default
+		this.map = new google.maps.Map( this.el, {
+			center: new google.maps.LatLng( MAP_DEFAULT_CENTER[0], MAP_DEFAULT_CENTER[1] ),
+			zoom: MAP_DEFAULT_ZOOM
+		});
 	},
 	// custom batch geocoding method
 	// build in geocoder doesn't work with batch requests for some reason
