@@ -36,7 +36,7 @@ module.exports = Backbone.View.extend({
 				address: location,
 				bounds: this.geocoder_bounds
 			}, function( results, status ){
-				if( !results ) return cb( new Error('Cannot geocode location'), null );
+				if( status !== 'OK' ) return cb( null, null );
 				var lat = results[0].geometry.location.d;
 				var lon = results[0].geometry.location.e;
 				return cb( null, [ lat, lon ] );
@@ -44,33 +44,18 @@ module.exports = Backbone.View.extend({
 		}.bind( this ), callback.bind( this ) );
 	},
 	drawMarkers: function(){
-		var locations = this.collection;
-		var location_names = locations.map( function( location ){
-			// shim ", San Francisco" into locations to get more accurate results
-			return location.get('locations') +', San Francisco';
-		});
-		var locations_query = location_names.join(';');
-		this.geocodeQuery( locations_query, function( data ){
-			var markers_geojson = locations.map( function( location, i ){
-				var geocoding_results = data[i].results;
-				// mapbox geocoder is not happy with the way this api returns location data
-				// so we just give invalid locations 0,0 for now
-				var geocoding_data = geocoding_results.length ? geocoding_results[0][0] : { lat: 0, lon: 0 };
-				var marker_geojson = {
-					type: 'Feature',
-					geometry: {
-						type: 'Point',
-						coordinates: [ geocoding_data.lon, geocoding_data.lat ]
-					},
-					properties: location.toJSON()
-				};
-				return marker_geojson;
+		var map = this.map;
+		var location_names = this.collection.pluck('locations');
+		this.geocodeQuery( location_names, function( err, data ){
+			this.collection.each( function( location, i ){
+				var geocoding_results = data[i];
+				if( !geocoding_results ) return;
+				var marker = new google.maps.Marker({
+					position: new google.maps.LatLng( geocoding_results[0], geocoding_results[1] ),
+					title: location.get('title'),
+					map: map
+				});
 			});
-			var marker_layer = L.mapbox.featureLayer({
-				type: 'FeatureCollection',
-				features: markers_geojson
-			});
-			this.map.addLayer( marker_layer );
 		});
 	}
 });
