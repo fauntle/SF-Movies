@@ -17,7 +17,9 @@ module.exports = Backbone.View.extend({
 	render: function(){
 		this.map = new google.maps.Map( this.el, {
 			center: new google.maps.LatLng( MAP_DEFAULT_CENTER[0], MAP_DEFAULT_CENTER[1] ),
-			zoom: MAP_DEFAULT_ZOOM
+			zoom: MAP_DEFAULT_ZOOM,
+			panControl: false,
+			streetViewControl: false
 		});
 		this.geocoder = new google.maps.Geocoder();
 		this.geocoder_bounds = new google.maps.LatLngBounds(
