@@ -1,11 +1,11 @@
-var MAP_ID = 'fauntleroy.hfnj60nk';
 var MAP_DEFAULT_CENTER = [ 37.78, -122.419 ];
 var MAP_DEFAULT_ZOOM = 13;
-var MAPBOX_GEOCODING_API_URL = 'http://api.tiles.mapbox.com/v3/'+ MAP_ID +'/geocode/';
+var NO_OP = function(){};
 
 var Backbone = require('backbone');
 var $ = Backbone.$ = require('jquery');
 var _ = require('underscore');
+var async = require('async');
 require('mapbox.js'); // attaches "automatically" to window.L
 
 module.exports = Backbone.View.extend({
@@ -20,13 +20,28 @@ module.exports = Backbone.View.extend({
 			zoom: MAP_DEFAULT_ZOOM
 		});
 		this.geocoder = new google.maps.Geocoder();
+		this.geocoder_bounds = new google.maps.LatLngBounds(
+			new google.maps.LatLng( MAP_DEFAULT_CENTER[0] - 10, MAP_DEFAULT_CENTER[1] - 10 ),
+			new google.maps.LatLng( MAP_DEFAULT_CENTER[0] + 10, MAP_DEFAULT_CENTER[1] + 10 )
+		);
 	},
 	// custom batch geocoding method
 	// build in geocoder doesn't work with batch requests for some reason
 	// issue filed: https://github.com/mapbox/mapbox.js/issues/708
 	geocodeQuery: function( query, callback ){
-		query = encodeURIComponent( query );
-		$.getJSON( MAPBOX_GEOCODING_API_URL + query +'.json?callback=?', callback.bind(this) );
+		query = _.isArray( query ) ? query : [ query ];
+		callback = callback || NO_OP;
+		async.map( query, function( location, cb ){
+			this.geocoder.geocode({
+				address: location,
+				bounds: this.geocoder_bounds
+			}, function( results, status ){
+				if( !results ) return cb( new Error('Cannot geocode location'), null );
+				var lat = results[0].geometry.location.d;
+				var lon = results[0].geometry.location.e;
+				return cb( null, [ lat, lon ] );
+			});
+		}.bind( this ), callback.bind( this ) );
 	},
 	drawMarkers: function(){
 		var locations = this.collection;

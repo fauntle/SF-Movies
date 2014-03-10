@@ -30,7 +30,8 @@
     "mapbox.js": "~1.6.2",
     "jquery": "~2.1.0",
     "backbone": "~1.1.2",
-    "underscore": "~1.6.0"
+    "underscore": "~1.6.0",
+    "async": "~0.2.10"
   },
   "browserify-shim": {},
   "dependencies": {
