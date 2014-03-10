@@ -7,6 +7,8 @@ var $ = Backbone.$ = require('jquery');
 var _ = require('underscore');
 var async = require('async');
 
+var info_template = require('../templates/info.hbs');
+
 module.exports = Backbone.View.extend({
 	initialize: function(){
 		_.bindAll( this, 'geocodeQuery' );
@@ -61,6 +63,12 @@ module.exports = Backbone.View.extend({
 					title: location.get('title'),
 					animation: google.maps.Animation.DROP,
 					map: this.map
+				});
+				var infowindow = new google.maps.InfoWindow({
+					content: info_template( location.toJSON() )
+				});
+				google.maps.event.addListener( marker, 'click', function(){
+					infowindow.open( this.map, marker );
 				});
 				this.markers.push( marker );
 			}.bind( this ));
