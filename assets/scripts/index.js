@@ -1,7 +1,21 @@
 var $ = require('jquery');
 require('mapbox.js'); // attaches "automatically" to window.L
 
+var LocationsCollection = require('./locationsCollection.js');
+var MapView = require('./mapView.js');
+var SearchView = require('./searchView.js');
+
+var sfmovies = window.sfmovies = {};
+
+sfmovies.locations = new LocationsCollection();
+
 $(function(){
-	var map = L.mapbox.map( 'map', 'fauntleroy.hfnj60nk' );
-	map.setView( [ 37.78, -122.419 ], 13 ); // temporary. This should eventually default
+	sfmovies.mapview = new MapView({
+		el: '#map',
+		collection: sfmovies.locations
+	});
+	sfmovies.searchview = new SearchView({
+		el: '#search',
+		collection: sfmovies.locations
+	});
 });
