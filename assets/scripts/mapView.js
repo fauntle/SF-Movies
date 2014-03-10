@@ -6,7 +6,6 @@ var Backbone = require('backbone');
 var $ = Backbone.$ = require('jquery');
 var _ = require('underscore');
 var async = require('async');
-require('mapbox.js'); // attaches "automatically" to window.L
 
 module.exports = Backbone.View.extend({
 	initialize: function(){
@@ -26,10 +25,9 @@ module.exports = Backbone.View.extend({
 			new google.maps.LatLng( MAP_DEFAULT_CENTER[0] - 10, MAP_DEFAULT_CENTER[1] - 10 ),
 			new google.maps.LatLng( MAP_DEFAULT_CENTER[0] + 10, MAP_DEFAULT_CENTER[1] + 10 )
 		);
+		this.markers = [];
 	},
 	// custom batch geocoding method
-	// build in geocoder doesn't work with batch requests for some reason
-	// issue filed: https://github.com/mapbox/mapbox.js/issues/708
 	geocodeQuery: function( query, callback ){
 		query = _.isArray( query ) ? query : [ query ];
 		callback = callback || NO_OP;
@@ -45,9 +43,15 @@ module.exports = Backbone.View.extend({
 			});
 		}.bind( this ), callback.bind( this ) );
 	},
+	clearMarkers: function(){
+		for( var i = 0; i < this.markers.length; i++ ){
+			this.markers[i].setMap( null );
+		}
+		this.markers = [];
+	},
 	drawMarkers: function(){
-		var map = this.map;
 		var location_names = this.collection.pluck('locations');
+		this.clearMarkers();
 		this.geocodeQuery( location_names, function( err, data ){
 			this.collection.each( function( location, i ){
 				var geocoding_results = data[i];
@@ -56,9 +60,10 @@ module.exports = Backbone.View.extend({
 					position: new google.maps.LatLng( geocoding_results[0], geocoding_results[1] ),
 					title: location.get('title'),
 					animation: google.maps.Animation.DROP,
-					map: map
+					map: this.map
 				});
-			});
+				this.markers.push( marker );
+			}.bind( this ));
 		});
 	}
 });
