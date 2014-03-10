@@ -1,5 +1,5 @@
-var MAP_DEFAULT_CENTER = [ 37.78, -122.419 ];
-var MAP_DEFAULT_ZOOM = 13;
+var MAP_DEFAULT_CENTER = [ 37.79, -122.419 ];
+var MAP_DEFAULT_ZOOM = 12;
 var NO_OP = function(){};
 
 var Backbone = require('backbone');
