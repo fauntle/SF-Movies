@@ -29,7 +29,8 @@
     "watchify": "~0.6.1",
     "mapbox.js": "~1.6.2",
     "jquery": "~2.1.0",
-    "backbone": "~1.1.2"
+    "backbone": "~1.1.2",
+    "underscore": "~1.6.0"
   },
   "browserify-shim": {},
   "dependencies": {
