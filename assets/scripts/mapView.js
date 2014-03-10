@@ -28,6 +28,7 @@ module.exports = Backbone.View.extend({
 			new google.maps.LatLng( MAP_DEFAULT_CENTER[0] + 10, MAP_DEFAULT_CENTER[1] + 10 )
 		);
 		this.markers = [];
+		this.previous_infowindow;
 	},
 	// custom batch geocoding method
 	geocodeQuery: function( query, callback ){
@@ -69,7 +70,9 @@ module.exports = Backbone.View.extend({
 				});
 				google.maps.event.addListener( marker, 'click', function(){
 					infowindow.open( this.map, marker );
-				});
+					if( this.previous_infowindow ) this.previous_infowindow.close();
+					this.previous_infowindow = infowindow;
+				}.bind( this ));
 				this.markers.push( marker );
 			}.bind( this ));
 		});
