@@ -40,8 +40,9 @@ module.exports = Backbone.View.extend({
 				bounds: this.geocoder_bounds
 			}, function( results, status ){
 				if( status !== 'OK' ) return cb( null, null );
-				var lat = results[0].geometry.location.lat();
-				var lon = results[0].geometry.location.lng();
+				var location = results[0].geometry.location;
+				var lat = location.lat();
+				var lon = location.lng();
 				return cb( null, [ lat, lon ] );
 			});
 		}.bind( this ), callback.bind( this ) );
