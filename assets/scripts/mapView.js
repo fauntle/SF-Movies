@@ -12,8 +12,15 @@ var info_template = require('../templates/info.hbs');
 module.exports = Backbone.View.extend({
 	initialize: function(){
 		_.bindAll( this, 'geocodeQuery' );
-		this.render();
+		this.geocoder = new google.maps.Geocoder();
+		this.geocoder_bounds = new google.maps.LatLngBounds(
+			new google.maps.LatLng( MAP_DEFAULT_CENTER[0] - 10, MAP_DEFAULT_CENTER[1] - 10 ),
+			new google.maps.LatLng( MAP_DEFAULT_CENTER[0] + 10, MAP_DEFAULT_CENTER[1] + 10 )
+		);
+		this.markers = [];
+		this.previous_infowindow;
 		this.listenTo( this.collection, 'reset', this.drawMarkers );
+		this.render();
 	},
 	render: function(){
 		this.map = new google.maps.Map( this.el, {
@@ -22,13 +29,6 @@ module.exports = Backbone.View.extend({
 			panControl: false,
 			streetViewControl: false
 		});
-		this.geocoder = new google.maps.Geocoder();
-		this.geocoder_bounds = new google.maps.LatLngBounds(
-			new google.maps.LatLng( MAP_DEFAULT_CENTER[0] - 10, MAP_DEFAULT_CENTER[1] - 10 ),
-			new google.maps.LatLng( MAP_DEFAULT_CENTER[0] + 10, MAP_DEFAULT_CENTER[1] + 10 )
-		);
-		this.markers = [];
-		this.previous_infowindow;
 	},
 	// custom batch geocoding method
 	geocodeQuery: function( query, callback ){
