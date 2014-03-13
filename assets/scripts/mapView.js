@@ -14,8 +14,8 @@ module.exports = Backbone.View.extend({
 		_.bindAll( this, 'geocodeQuery' );
 		this.geocoder = new google.maps.Geocoder();
 		this.geocoder_bounds = new google.maps.LatLngBounds(
-			new google.maps.LatLng( MAP_DEFAULT_CENTER[0] - 10, MAP_DEFAULT_CENTER[1] - 10 ),
-			new google.maps.LatLng( MAP_DEFAULT_CENTER[0] + 10, MAP_DEFAULT_CENTER[1] + 10 )
+			new google.maps.LatLng( MAP_DEFAULT_CENTER[0] - 1, MAP_DEFAULT_CENTER[1] - 1 ),
+			new google.maps.LatLng( MAP_DEFAULT_CENTER[0] + 1, MAP_DEFAULT_CENTER[1] + 1 )
 		);
 		this.markers = [];
 		this.previous_infowindow;
