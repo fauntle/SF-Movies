@@ -1,4 +1,5 @@
 var SFDATA_API_URL = 'http://data.sfgov.org/resource/yitu-d5am.json';
+var PAGINATION_OFFSET = 5;
 
 var Backbone = require('backbone');
 var _ = require('underscore');
@@ -24,16 +25,20 @@ module.exports = Backbone.Collection.extend({
 	},
 	// set the next 5 locations as the current selection
 	next: function(){
-		if( this.length > this.start + 5 ){
-			this.start += 5;
+		if( this.length > this.start + PAGINATION_OFFSET ){
+			this.start += PAGINATION_OFFSET;
 			this.trigger( 'start', this.start );
 		}
 	},
 	// set the previous 5 locations as the current selection
 	prev: function(){
-		if( this.start - 5 >= 0 ){
-			this.start -=5;
+		if( this.start - PAGINATION_OFFSET >= 0 ){
+			this.start -=PAGINATION_OFFSET;
 			this.trigger( 'start', this.start );
 		}
+	},
+	// return the currently active selection
+	current: function(){
+		return _( this.slice( this.start, this.start + PAGINATION_OFFSET ) );
 	}
 });

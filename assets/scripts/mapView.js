@@ -19,7 +19,7 @@ module.exports = Backbone.View.extend({
 		);
 		this.markers = [];
 		this.previous_infowindow;
-		this.listenTo( this.collection, 'reset', this.drawMarkers );
+		this.listenTo( this.collection, 'reset start', this.drawMarkers );
 		this.render();
 	},
 	render: function(){
@@ -54,7 +54,9 @@ module.exports = Backbone.View.extend({
 		this.markers = [];
 	},
 	drawMarkers: function(){
-		var location_names = this.collection.pluck('locations');
+		var location_names = this.collection.current().map( function( location ){
+			return location.get('locations');
+		});
 		this.clearMarkers();
 		this.geocodeQuery( location_names, function( err, data ){
 			this.collection.each( function( location, i ){
