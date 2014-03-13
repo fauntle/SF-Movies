@@ -3,11 +3,11 @@ SF-Movies
 
 See where movies have been filmed in San Francisco.
 
-## Technical Track
+### Technical Track
 
 Front end
 
-## Technical Choices
+### Technical Choices
 
 - Use SFData API directly
 - Use Backbone.js
@@ -16,18 +16,18 @@ Front end
 - Use simple Node.js static file server
 - Use Google maps geocoding service
 
-## Trade-offs, Left-outs, and Do-differentlies
+### Trade-offs, Left-outs, and Do-differentlies
 
 - SFData API lacked functionality
 - SFData API data was not always usable (geocoding issues)
 - Geocoding in real-time comes with limits
 - Might pull in data, enhance it, and make my own API
 
-## Other Code I'm Proud of
+### Other Code I'm Proud of
 
-Just about all of that is covered on [kempfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.info](http://kempfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.info)
+Just about all of that is covered on [kempfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.info](http://kempfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.info). There's also the (very) incomplete [tandem.io](https://github.com/Fauntleroy/tandem.io), which is my currently active side project.
 
-## Resume or Public Profile
+### Resume or Public Profile
 
 - Personal website - [kempfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.info](http://kempfffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.info)
 - LinkedIn - [linkedin.com/in/timothykempf](http://www.linkedin.com/in/timothykempf)
