@@ -54,9 +54,7 @@ module.exports = Backbone.View.extend({
 		this.markers = [];
 	},
 	drawMarkers: function(){
-		var location_names = this.collection.current().map( function( location ){
-			return location.get('locations');
-		});
+		var location_names = _.pluck( this.collection.current(), 'locations' );
 		this.clearMarkers();
 		this.geocodeQuery( location_names, function( err, data ){
 			this.collection.each( function( location, i ){

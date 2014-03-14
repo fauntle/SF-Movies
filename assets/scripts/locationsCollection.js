@@ -39,6 +39,10 @@ module.exports = Backbone.Collection.extend({
 	},
 	// return the currently active selection
 	current: function(){
-		return _( this.slice( this.start, this.start + PAGINATION_OFFSET ) );
+		var current_locations = this.slice( this.start, this.start + PAGINATION_OFFSET );
+		current_locations = _.map( current_locations, function( location ){
+			return location.toJSON();
+		});
+		return current_locations;
 	}
 });
