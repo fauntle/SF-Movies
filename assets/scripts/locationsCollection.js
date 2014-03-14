@@ -8,6 +8,16 @@ module.exports = Backbone.Collection.extend({
 	url: function(){
 		return SFDATA_API_URL +'?$q='+ this.query;
 	},
+	parse: function( locations ){
+		return _.map( locations, function( location ){
+			location.actors = [];
+			for( var i = 1; i <= 3; i++ ){
+				var actor = location['actor_'+ i];
+				if( actor ) location.actors.push( actor );
+			}
+			return location;
+		});
+	},
 	initialize: function(){
 		this.query;
 		this.start = 0;
