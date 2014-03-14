@@ -1,7 +1,14 @@
 <ul class="list">
 {{#this}}
 <li>
-	<h3>{{title}}</h3>
+	<h3>{{locations}}</h3>
+	<h4>{{title}}<h4>
+	<var class="year">{{release_year}}</var>
+	<ul class="actors">
+	{{#actors}}
+		<li>{{this}}</li>
+	{{/actors}}
+	</ul>
 </li>
 {{/this}}
 </ul>
