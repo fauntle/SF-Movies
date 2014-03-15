@@ -7,6 +7,7 @@ var LocationsCollection = require('./locationsCollection.js');
 var MapView = require('./mapView.js');
 var SearchView = require('./searchView.js');
 var LocationsView = require('./locationsView.js');
+var IntroView = require('./introView.js');
 
 var sfmovies = window.sfmovies = {};
 
@@ -25,5 +26,8 @@ $(function(){
 	sfmovies.locationsview = new LocationsView({
 		el: '#locations',
 		collection: sfmovies.locations
+	});
+	sfmovies.introview = new IntroView({
+		el: '#intro'
 	});
 });
