@@ -1,4 +1,7 @@
+var DEFAULT_MOVIES = ['Dirty Harry','Interview with the Vampire','Vertigo'];
+
 var $ = require('jquery');
+var _ = require('underscore');
 
 var LocationsCollection = require('./locationsCollection.js');
 var MapView = require('./mapView.js');
@@ -16,7 +19,8 @@ $(function(){
 	});
 	sfmovies.searchview = new SearchView({
 		el: '#search',
-		collection: sfmovies.locations
+		collection: sfmovies.locations,
+		default: _.sample( DEFAULT_MOVIES )
 	});
 	sfmovies.locationsview = new LocationsView({
 		el: '#locations',

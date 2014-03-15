@@ -13,7 +13,8 @@ module.exports = Backbone.View.extend({
 		'submit': 'onSubmit',
 		'select input[name="query"]': 'onSelect'
 	},
-	initialize: function(){
+	initialize: function( config ){
+		this.default = config.default;
 		_.bindAll( this, 'onSubmit', 'onSelect' );
 		this.render();
 	},
@@ -35,6 +36,8 @@ module.exports = Backbone.View.extend({
 			max: 5,
 			delay: 250
 		});
+		this.$query.val( this.default );
+		this.collection.fetchQuery( this.default );
 	},
 	onSubmit: function( e ){
 		e.preventDefault();

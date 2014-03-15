@@ -22,7 +22,6 @@ module.exports = Backbone.Collection.extend({
 		this.query;
 		this.start = 0;
 		_.bindAll( this, 'fetchQuery', 'next', 'prev' );
-		this.fetchQuery('');
 	},
 	fetchQuery: function( query ){
 		this.query = query;
