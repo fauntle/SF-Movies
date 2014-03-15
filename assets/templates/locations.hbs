@@ -1,13 +1,13 @@
 <ul class="list">
-{{#this}}
+{{#results}}
 <li>
 	<h4>{{locations}}</h4>
 	<em>{{title}}</em>
 </li>
-{{/this}}
-{{^this}}
+{{/results}}
+{{^results}}
 <div class="empty">No filming locations found.</div>
-{{/this}}
+{{/results}}
 </ul>
-<a href="#previous" class="previous">Previous</a>
-<a href="#next" class="next">Next</a>
+{{#previous}}<a href="#previous" class="previous">Previous</a>{{/previous}}
+{{#next}}<a href="#next" class="next">Next</a>{{/next}}

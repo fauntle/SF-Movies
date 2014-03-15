@@ -13,7 +13,12 @@ module.exports = Backbone.View.extend({
 		this.render();
 	},
 	render: function(){
-		this.$el.html( locations_template( this.collection.current() ) );
+		var context = {
+			results: this.collection.current(),
+			next: ( this.collection.start + 5 < this.collection.length ),
+			previous: ( this.collection.start > 0 )
+		};
+		this.$el.html( locations_template( context ) );
 	},
 	clickPrevious: function( e ){
 		e.preventDefault();
