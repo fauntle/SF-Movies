@@ -8,6 +8,7 @@
 @gray: rgb( 230, 230, 230 );
 @dark_gray: rgb( 150, 150, 150 );
 @notblack: rgb( 75, 75, 75 );
+@black: rgb( 0, 0, 0 );
 @tb_margin: 20px;
 @lr_margin: 20px;
 
@@ -27,13 +28,12 @@ h1, h2, h3, h4, h5, h6, strong {
 	top: @tb_margin;
 	left: @lr_margin;
 	margin-left: 20px;
-	padding: 7px 10px;
 	background: @notwhite;
 
 	input {
 		border: none;
-		border-bottom: @gray 2px solid;
-		padding: 2px 0;
+		height: 30px;
+		padding: 0 10px;
 		font-family: 'Lato', sans-serif;
 		font-size: 18px;
 		font-weight: 900;
@@ -46,9 +46,14 @@ h1, h2, h3, h4, h5, h6, strong {
 
 	button {
 		border: none;
-		padding: 5px 8px;
+		height: 30px;
+		padding: 0 8px;
 		color: @notwhite;
-		background: #000;
+		background: @notblack;
+
+		&:hover {
+			background: @black;
+		}
 	}
 }
 
@@ -74,8 +79,13 @@ h1, h2, h3, h4, h5, h6, strong {
 		padding: 5px;
 		box-sizing: border-box;
 		text-align: center;
+		text-decoration: none;
 		color: @notwhite;
 		background: @notblack;
+
+		&:hover {
+			background: @black;
+		}
 	}
 
 	.previous {
