@@ -27,10 +27,7 @@ express_server.get( '/api/v1/locations', function( req, res ){
 	var limit = parseInt( req.query.limit, 10 ) || 25;
 	var sql_query = 'SELECT * FROM movies WHERE title LIKE ? LIMIT ?';
 	pool.query( sql_query, [ '%'+ query +'%', limit ], function( err, rows, fields ){
-		if( err ){
-			console.log( err );
-			res.status(500);
-		}
+		if( err ) return res.json( 500, [] );
 		res.json( rows );
 	});
 });
