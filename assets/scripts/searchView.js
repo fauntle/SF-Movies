@@ -10,9 +10,11 @@ var suggestion_template = require('../templates/suggestion.hbs');
 
 module.exports = Backbone.View.extend({
 	events: {
-		'submit': 'onSubmit'
+		'submit': 'onSubmit',
+		'select input[name="query"]': 'onSelect'
 	},
 	initialize: function(){
+		_.bindAll( this, 'onSubmit', 'onSelect' );
 		this.render();
 	},
 	render: function(){
@@ -37,5 +39,8 @@ module.exports = Backbone.View.extend({
 	onSubmit: function( e ){
 		e.preventDefault();
 		this.collection.fetchQuery( this.$query.val() );
+	},
+	onSelect: function( e ){
+		this.collection.fetchQuery( e.suggestion );
 	}
 });
