@@ -43,6 +43,13 @@ h1, h2, h3, h4, h5, h6, strong {
 			outline: none;
 		}
 	}
+
+	button {
+		border: none;
+		padding: 5px 8px;
+		color: @notwhite;
+		background: #000;
+	}
 }
 
 #map {
@@ -60,6 +67,16 @@ h1, h2, h3, h4, h5, h6, strong {
 	top: @tb_margin;
 	right: @lr_margin;
 	width: 300px;
+
+	.previous, .next {
+		display: block;
+		width: 150px;
+		padding: 5px;
+		box-sizing: border-box;
+		text-align: center;
+		color: @notwhite;
+		background: @notblack;
+	}
 
 	.previous {
 		float: left;
@@ -90,5 +107,10 @@ h1, h2, h3, h4, h5, h6, strong {
 		em {
 			color: @dark_gray;
 		}
+	}
+
+	.empty {
+		padding: 15px 20px;
+		text-align: center;
 	}
 }
