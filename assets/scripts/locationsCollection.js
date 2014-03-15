@@ -1,4 +1,4 @@
-var SFDATA_API_URL = 'http://data.sfgov.org/resource/yitu-d5am.json';
+var SFDATA_API_URL = '/api/v1/locations';
 var PAGINATION_OFFSET = 5;
 
 var Backbone = require('backbone');
@@ -6,7 +6,7 @@ var _ = require('underscore');
 
 module.exports = Backbone.Collection.extend({
 	url: function(){
-		return SFDATA_API_URL +'?$q='+ this.query;
+		return SFDATA_API_URL +'?q='+ this.query;
 	},
 	parse: function( locations ){
 		return _.map( locations, function( location ){
@@ -28,8 +28,6 @@ module.exports = Backbone.Collection.extend({
 		this.query = query;
 		this.start = 0;
 		this.fetch({
-			dataType: 'jsonp',
-			jsonp: '$jsonp',
 			reset: true
 		});
 	},
