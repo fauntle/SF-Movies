@@ -1,10 +1,8 @@
 var http = require('http');
 var path = require('path');
-var ecstatic = require('ecstatic');
+var express = require('express');
 
-var ecstatic_server = ecstatic({
-	root: path.join( __dirname, 'assets' )
-});
-var server = http.createServer( ecstatic_server );
-
-server.listen( 8080 );
+var express_server = express();
+express_server.use( express.static( path.join( __dirname, 'assets' ) ) );
+var http_server = http.createServer( express_server );
+http_server.listen( 8080 );

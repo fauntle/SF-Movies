@@ -34,6 +34,6 @@
   },
   "browserify-shim": {},
   "dependencies": {
-    "ecstatic": "~0.4.13"
+    "express": "~3.4.8"
   }
 }
