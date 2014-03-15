@@ -1,5 +1,6 @@
 /* We tell LESS that these are LESS files so it will *actually* import them */
 @import (less) 'vendor/jquery.sparkartSuggest.css';
+@import './mixins.less';
 
 @white: rgb( 255, 255, 255 );
 @tb_margin: 20px;
@@ -28,8 +29,12 @@
 	z-index: 2;
 	top: @tb_margin;
 	right: @lr_margin;
-	bottom: @tb_margin;
-	overflow: auto;
 	width: 300px;
-	background: @white;
+
+	> .list {
+		.list-reset;
+		overflow: auto;
+		max-height: 600px;
+		background: @white;
+	}
 }
