@@ -1,7 +1,35 @@
 /* We tell LESS that these are LESS files so it will *actually* import them */
 @import (less) 'vendor/jquery.sparkartSuggest.css';
 
+@white: rgb( 255, 255, 255 );
+@tb_margin: 20px;
+@lr_margin: 20px;
+
+#search {
+	position: absolute;
+	z-index: 2;
+	top: @tb_margin;
+	left: @lr_margin;
+	margin-left: 20px;
+	background: @white;
+}
+
 #map {
-	width: 800px;
-	height: 600px;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+#locations {
+	position: absolute;
+	z-index: 2;
+	top: @tb_margin;
+	right: @lr_margin;
+	bottom: @tb_margin;
+	overflow: auto;
+	width: 300px;
+	background: @white;
 }

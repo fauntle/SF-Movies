@@ -27,7 +27,8 @@ module.exports = Backbone.View.extend({
 			center: new google.maps.LatLng( MAP_DEFAULT_CENTER[0], MAP_DEFAULT_CENTER[1] ),
 			zoom: MAP_DEFAULT_ZOOM,
 			panControl: false,
-			streetViewControl: false
+			streetViewControl: false,
+			mapTypeControl: false
 		});
 	},
 	// custom batch geocoding method
