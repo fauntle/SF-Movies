@@ -6,16 +6,13 @@ var intro_template = require('../templates/intro.hbs');
 
 module.exports = Backbone.View.extend({
 	initialize: function(){
-		_.bindAll( this, 'show', 'hide' );
+		_.bindAll( this, 'hide' );
 		this.render();
 	},
 	render: function(){
 		this.$el.html( intro_template() );
 	},
-	show: function(){
-
-	},
-	hide: function(){
-
+	hide: function( e ){
+		e.preventDefault();
 	}
 });
