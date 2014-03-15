@@ -1,16 +1,10 @@
-<a href="#previous">Previous</a>
-<a href="#next">Next</a>
+<a href="#previous" class="previous">Previous</a>
+<a href="#next" class="next">Next</a>
 <ul class="list">
 {{#this}}
 <li>
-	<h3>{{locations}}</h3>
-	<h4>{{title}}<h4>
-	<var class="year">{{release_year}}</var>
-	<ul class="actors">
-	{{#actors}}
-		<li>{{this}}</li>
-	{{/actors}}
-	</ul>
+	<h4>{{locations}}</h4>
+	<em>{{title}}</em>
 </li>
 {{/this}}
 </ul>

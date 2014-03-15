@@ -3,11 +3,15 @@
 @import './mixins.less';
 
 @white: rgb( 255, 255, 255 );
+@gray: rgb( 230, 230, 230 );
+@dark_gray: rgb( 150, 150, 150 );
+@notblack: rgb( 75, 75, 75 );
 @tb_margin: 20px;
 @lr_margin: 20px;
 
 html {
 	font-family: 'Lato', sans-serif;
+	color: @notblack;
 }
 
 h1, h2, h3, h4, h5, h6, strong {
@@ -15,6 +19,7 @@ h1, h2, h3, h4, h5, h6, strong {
 }
 
 #search {
+	.shadow;
 	position: absolute;
 	z-index: 2;
 	top: @tb_margin;
@@ -39,10 +44,34 @@ h1, h2, h3, h4, h5, h6, strong {
 	right: @lr_margin;
 	width: 300px;
 
-	> .list {
+	.previous {
+		float: left;
+	}
+
+	.next {
+		float: right;
+	}
+
+	.list {
+		.shadow;
 		.list-reset;
+		clear: both;
 		overflow: auto;
-		max-height: 600px;
+		max-height: 500px;
+		padding: 0;
 		background: @white;
+
+		> li {
+			padding: 15px 20px;
+			border-bottom: @gray 1px solid;
+		}
+
+		h4 {
+			margin: 0 0 5px 0;
+		}
+
+		em {
+			color: @dark_gray;
+		}
 	}
 }
