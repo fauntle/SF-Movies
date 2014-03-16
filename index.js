@@ -3,6 +3,7 @@ const MYSQL_USER = process.env.SFMOVIES_MYSQL_USER;
 const MYSQL_PASSWORD = process.env.SFMOVIES_MYSQL_PASSWORD;
 const MYSQL_DB = process.env.SFMOVIES_MYSQL_DB;
 const MYSQL_URL = process.env.CLEARDB_DATABASE_URL;
+const PORT = process.env.PORT || 8080;
 
 var http = require('http');
 var path = require('path');
@@ -12,7 +13,7 @@ var mysql = require('mysql');
 var express_server = express();
 express_server.use( express.static( path.join( __dirname, 'assets' ) ) );
 var http_server = http.createServer( express_server );
-http_server.listen( 8080 );
+http_server.listen( PORT );
 
 var pool = mysql.createPool( MYSQL_URL || {
 	host: MYSQL_HOST,
