@@ -12,11 +12,13 @@ var info_template = require('../templates/info.hbs');
 module.exports = Backbone.View.extend({
 	initialize: function(){
 		_.bindAll( this, 'geocodeQuery' );
+		// start geocoder with appropriate bounding box
 		this.geocoder = new google.maps.Geocoder();
 		this.geocoder_bounds = new google.maps.LatLngBounds(
 			new google.maps.LatLng( MAP_DEFAULT_CENTER[0] - 1, MAP_DEFAULT_CENTER[1] - 1 ),
 			new google.maps.LatLng( MAP_DEFAULT_CENTER[0] + 1, MAP_DEFAULT_CENTER[1] + 1 )
 		);
+		// store map data internally for use later
 		this.markers = [];
 		this.previous_infowindow;
 		this.listenTo( this.collection, 'reset start', this.drawMarkers );
@@ -48,12 +50,15 @@ module.exports = Backbone.View.extend({
 			});
 		}.bind( this ), callback.bind( this ) );
 	},
+	// remove all markers currently on the map
 	clearMarkers: function(){
 		for( var i = 0; i < this.markers.length; i++ ){
 			this.markers[i].setMap( null );
 		}
 		this.markers = [];
 	},
+	// draw markers for "current" locations in locations collection
+	// geocodes location strings and places markers on coordinates (if they exist)
 	drawMarkers: function(){
 		var location_names = _.pluck( this.collection.current(), 'locations' );
 		this.clearMarkers();

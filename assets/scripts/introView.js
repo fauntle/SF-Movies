@@ -9,6 +9,7 @@ module.exports = Backbone.View.extend({
 		'click a[href="#gotit"]': 'clickGotIt'
 	},
 	initialize: function(){
+		// if view has already been seen by this browser, do not show it
 		var intro_viewed = store.get('sfmovies:intro_viewed');
 		if( intro_viewed ) return this.remove();
 		this.render();
@@ -20,6 +21,7 @@ module.exports = Backbone.View.extend({
 		console.log('clickind');
 		e.preventDefault();
 		this.remove();
+		// store the intro message's viewed state for subsequent page loads
 		store.set( 'sfmovies:intro_viewed', true );
 	}
 });

@@ -19,10 +19,12 @@ module.exports = Backbone.Collection.extend({
 		});
 	},
 	initialize: function(){
+		// internal variables for keeping track of search state
 		this.query;
 		this.start = 0;
 		_.bindAll( this, 'fetchQuery', 'next', 'prev' );
 	},
+	// utility method for searching for location data
 	fetchQuery: function( query ){
 		this.query = query;
 		this.start = 0;

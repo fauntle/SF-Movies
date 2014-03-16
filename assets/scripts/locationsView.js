@@ -15,6 +15,7 @@ module.exports = Backbone.View.extend({
 	render: function(){
 		var context = {
 			results: this.collection.current(),
+			// determine if prev/next buttons need to be shown
 			next: ( this.collection.start + 5 < this.collection.length ),
 			previous: ( this.collection.start > 0 )
 		};
