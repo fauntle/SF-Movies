@@ -3,6 +3,10 @@ SF-Movies
 
 See where movies have been filmed in San Francisco.
 
+### Demo
+
+A demo of the application is running at [tk-sf-movies.herokuapp.com](http://tk-sf-movies.herokuapp.com).
+
 ### Running the Application
 
 In order to run this application you will need to:
@@ -27,6 +31,7 @@ Front end
 - I used Backbone.js because it was advised, and a good fit for an application of this level of complexity. I'm very familiar with Backbone.js and use it for a variety of projects.
 - Asset compilation was handled with a simple Gulp setup. I've been using Grunt for a while and have recently switched to Gulp due to its simplicity and speed.
 - Node.js was used to create a small static file server and barebones API. I've been writing applications with Node.js for a while, and the rest of the application is client-side JS, so it was a natural fit.
+- The demo is hosted on Heroku because it provides a free tier for hosting and simple access to a free MySQL provider.
 
 ### Trade-offs, Left-outs, and Do-differentlies
 
