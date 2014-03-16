@@ -3,7 +3,7 @@ const MYSQL_USER = process.env.SFMOVIES_MYSQL_USER;
 const MYSQL_PASSWORD = process.env.SFMOVIES_MYSQL_PASSWORD;
 const MYSQL_DB = process.env.SFMOVIES_MYSQL_DB;
 const MYSQL_URL = process.env.CLEARDB_DATABASE_URL;
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5000;
 
 var http = require('http');
 var path = require('path');
